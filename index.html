@@ -6,68 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hanoi Date Planner 🌸</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Quicksand', 'sans-serif'],
-              heading: ['Fredoka', 'sans-serif'],
-              hand: ['Dancing Script', 'cursive'],
+              sans: ["Quicksand", "sans-serif"],
+              heading: ["Fredoka", "sans-serif"],
+              hand: ["Dancing Script", "cursive"],
             },
             colors: {
               pastel: {
-                pink: '#ffe4e6',
-                purple: '#f3e8ff',
-                blue: '#e0f2fe',
-                green: '#dcfce7',
-                yellow: '#fef9c3',
-                orange: '#ffedd5',
-                text: '#475569',
-              }
+                pink: "#ffe4e6",
+                purple: "#f3e8ff",
+                blue: "#e0f2fe",
+                green: "#dcfce7",
+                yellow: "#fef9c3",
+                orange: "#ffedd5",
+                text: "#475569",
+              },
             },
             animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'float-delayed': 'float 6s ease-in-out 3s infinite',
-              'wiggle': 'wiggle 1s ease-in-out infinite',
-              'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              'slide-up': 'slideUp 0.5s ease-out',
-              'float-fade': 'floatFade 0.8s ease-out forwards',
-              'fade-out': 'fadeOut 1s ease-out forwards',
-              'spin-slow': 'spin 3s linear infinite',
+              float: "float 6s ease-in-out infinite",
+              "float-delayed": "float 6s ease-in-out 3s infinite",
+              wiggle: "wiggle 1s ease-in-out infinite",
+              pop: "pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+              "slide-up": "slideUp 0.5s ease-out",
+              "float-fade": "floatFade 0.8s ease-out forwards",
+              "fade-out": "fadeOut 1s ease-out forwards",
+              "spin-slow": "spin 3s linear infinite",
             },
             keyframes: {
               float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
               },
               wiggle: {
-                '0%, 100%': { transform: 'rotate(-3deg)' },
-                '50%': { transform: 'rotate(3deg)' },
+                "0%, 100%": { transform: "rotate(-3deg)" },
+                "50%": { transform: "rotate(3deg)" },
               },
               pop: {
-                '0%': { transform: 'scale(0.9)' },
-                '100%': { transform: 'scale(1)' },
+                "0%": { transform: "scale(0.9)" },
+                "100%": { transform: "scale(1)" },
               },
               slideUp: {
-                '0%': { transform: 'translateY(20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
               },
               floatFade: {
-                '0%': { transform: 'translate(-50%, 0) scale(0.5)', opacity: '1' },
-                '100%': { transform: 'translate(-50%, -40px) scale(1.2)', opacity: '0' },
+                "0%": {
+                  transform: "translate(-50%, 0) scale(0.5)",
+                  opacity: "1",
+                },
+                "100%": {
+                  transform: "translate(-50%, -40px) scale(1.2)",
+                  opacity: "0",
+                },
               },
               fadeOut: {
-                '0%': { opacity: '0.6', transform: 'scale(1)' },
-                '100%': { opacity: '0', transform: 'scale(0.5)' },
-              }
-            }
-          }
-        }
-      }
+                "0%": { opacity: "0.6", transform: "scale(1)" },
+                "100%": { opacity: "0", transform: "scale(0.5)" },
+              },
+              floatUp: {
+                "0%": {
+                  transform: "translateY(0) rotate(0deg)",
+                  opacity: "0.7",
+                },
+                "50%": { opacity: "1" },
+                "100%": {
+                  transform: "translateY(-100vh) rotate(15deg)",
+                  opacity: "0",
+                },
+              },
+            },
+          },
+        },
+      };
     </script>
     <style>
       /* Custom scrollbar for cuteness */
@@ -75,19 +95,23 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #f1f5f9; 
+        background: #f1f5f9;
       }
       ::-webkit-scrollbar-thumb {
-        background: #fbcfe8; 
+        background: #fbcfe8;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #f472b6; 
+        background: #f472b6;
       }
-      
+
       /* Ticket jagged edge effect */
       .ticket-rip {
-        background-image: radial-gradient(circle at bottom, transparent 6px, #ffffff 6px);
+        background-image: radial-gradient(
+          circle at bottom,
+          transparent 6px,
+          #ffffff 6px
+        );
         background-size: 16px 16px;
         background-position: bottom center;
         background-repeat: repeat-x;
@@ -100,7 +124,11 @@
         transform: rotate(180deg);
       }
       .ticket-rip-top {
-        background-image: radial-gradient(circle at top, transparent 6px, #ffffff 6px);
+        background-image: radial-gradient(
+          circle at top,
+          transparent 6px,
+          #ffffff 6px
+        );
         background-size: 16px 16px;
         background-position: top center;
         background-repeat: repeat-x;
@@ -112,18 +140,18 @@
         z-index: 10;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
-    "react/": "https://esm.sh/react@^19.2.1/",
-    "react": "https://esm.sh/react@^19.2.1",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
-    "html2canvas": "https://esm.sh/html2canvas@1.4.1"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
+          "react/": "https://esm.sh/react@^19.2.1/",
+          "react": "https://esm.sh/react@^19.2.1",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
+          "html2canvas": "https://esm.sh/html2canvas@1.4.1"
+        }
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
